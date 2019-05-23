@@ -1,0 +1,25 @@
+.hero-table {
+    margin: 0 auto; 
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.hero-table-header {
+    background-color: rgb(127,255,0);
+    font-weight: bold;
+    padding: .5rem;
+    font-size: 1.2rem; 
+}
+
+.hero-table-body {
+    font-size: 1rem;
+}
+
+.hero-table-body:nth-child(2n+1) {
+    background-color: rgb(211,211,211);
+}
+
+.hero-table-body:hover {
+    cursor: pointer;
+    box-shadow: 0 .165rem .3rem rgba(0,0,0,.2);
+}

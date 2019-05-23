@@ -10,8 +10,8 @@ export class DecodersService {
     return {
       name: data.name,
       mass: data.mass,
-      height: data.number,
-      gender: data.string,
+      height: data.height,
+      gender: data.gender,
     }
   }
 }

@@ -1,5 +1,22 @@
+import { Hero } from './../core/models/hero.model';
 import { HeroService } from './../core/services/heroes.service';
 import { Component, OnInit } from '@angular/core'
+
+const mockedHeroes: Hero[] = [
+  {
+    name: 'Luk', 
+    mass: 145,  
+    height: 190,
+    gender: 'male'
+  }, 
+  {
+    name: 'Ivan', 
+    mass: 125,  
+    height: 160,
+    gender: 'male'
+  }
+]
+
 
 @Component({
   selector: 'app-heroes-list',
@@ -7,11 +24,16 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./heroes-list.component.scss'],
 })
 export class HeroesListComponent implements OnInit {
+  private heroes: Hero[]
+
   constructor(private heroesService: HeroService) {
-    console.log("heroes")
+    //this.heroes = mockedHeroes; 
   }
 
   ngOnInit() {
-    //this.apiService.get('people').subscribe()
+    this.heroesService.getList().subscribe((heroes) => {
+      console.log(heroes)
+      this.heroes = heroes
+    })
   }
 }

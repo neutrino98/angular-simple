@@ -1,3 +1,14 @@
-  <p>
-    this should be heroes list
-  </p>
+<div class='container hero-table'>
+  <div class='row hero-table-header'>
+    <div class='col-md-3'>Name</div>
+    <div class='col-md-3'>Height</div>
+    <div class='col-md-3'>Mass</div>
+    <div class='col-md-3'>Gender</div>
+  </div>
+  <div class='row hero-table-body' *ngFor="let hero of heroes">
+    <div class='col-md-3'>{{hero.name}}</div>
+    <div class='col-md-3'>{{hero.height}}</div>
+    <div class='col-md-3'>{{hero.mass}}</div>
+    <div class='col-md-3'>{{hero.gender}}</div>
+  </div>
+</div>
