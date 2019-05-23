@@ -1,4 +1,7 @@
 export interface Hero {
     name: string, 
-    mass: number
+    mass: number,  
+    height: number,
+    gender: string
 }
+
