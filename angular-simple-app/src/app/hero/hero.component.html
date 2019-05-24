@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6 come-back-link' [routerLink]="['/heroes']"> Come back</div>
+  </div>
+</div>
+<div class='container hero-table'>
+  <div class='row hero-table-row'>
+    <div class='col-md-6'>name</div>
+    <div class='col-md-6'>{{hero.name}}</div>
+  </div>
+  <div class='row hero-table-row'>
+    <div class='col-md-6'>mass</div>
+    <div class='col-md-6'>{{hero.mass}}</div>
+  </div>
+  <div class='row hero-table-row'>
+    <div class='col-md-6'>height</div>
+    <div class='col-md-6'>{{hero.height}}</div>
+  </div>
+  <div class='row hero-table-row'>
+    <div class='col-md-6'>gender</div>
+    <div class='col-md-6'>{{hero.gender}}</div>
+  </div>
+  <div class='row hero-table-row'>
+    <div class='col-md-6'>films</div>
+    <div class='col-md-6' [innerHtml]="prettyFilmsList()"></div>
+  </div>
+</div>
+

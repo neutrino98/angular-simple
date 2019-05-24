@@ -6,9 +6,11 @@
     <div class='col-md-3'>Gender</div>
   </div>
   <div class='row hero-table-body' *ngFor="let hero of heroes">
-    <div class='col-md-3'>{{hero.name}}</div>
+    <div class='col-md-3'><a [routerLink]="[ '/hero/' + hero.id]">{{hero.name}}</a></div>
     <div class='col-md-3'>{{hero.height}}</div>
     <div class='col-md-3'>{{hero.mass}}</div>
     <div class='col-md-3'>{{hero.gender}}</div>
   </div>
 </div>
+
+

@@ -6,9 +6,10 @@ import { HeroesListComponent } from './heroes-list/heroes-list.component'
 import { AppRoutingModule } from './app-routing.module'
 import { CoreModule } from './core/core.module'
 import { HttpClientModule } from '@angular/common/http';
+import { HeroComponent } from './hero/hero.component';
 
 @NgModule({
-  declarations: [AppComponent, HeroesListComponent],
+  declarations: [AppComponent, HeroesListComponent, HeroComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],

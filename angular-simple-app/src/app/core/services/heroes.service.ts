@@ -3,25 +3,32 @@ import { ApiService } from './api.service'
 import { Observable, from } from 'rxjs'
 import { Hero } from '../models'
 import { map } from 'rxjs/operators'
-import { DecodersService } from './decoders.service'
 
 @Injectable()
 export class HeroService {
-  constructor(
-    private apiService: ApiService,
-    private decodersService: DecodersService
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   getList(): Observable<Hero[]> {
-    return this.apiService.get('people').pipe(
+    return this.apiService.get('https://swapi.co/api/people').pipe(
       map(data => data.results),
-      map(items => items.map(item => this.decodersService.decodeHero(item)))
+      map(items => items.map(item => this.decodeHero(item)))
     )
   }
 
-  getHeroById(id: number): Observable<Hero> {
+  getHeroById(id: string): Observable<Hero> {
     return this.apiService
-      .get(`people/${id}`)
-      .pipe(map(data => this.decodersService.decodeHero(data)))
+      .get(`https://swapi.co/api/people/${id}`)
+      .pipe(map(data => this.decodeHero(data)))
+  }
+
+  decodeHero(data: any): Hero {
+    return {
+      name: data.name,
+      mass: data.mass,
+      height: data.height,
+      gender: data.gender,
+      id: data.url.split('/').reverse()[1],
+      films: data.films,
+    }
   }
 }
