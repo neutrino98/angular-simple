@@ -25,8 +25,4 @@ export class FilmsService {
     getFilmsByUrls(urls: string[]): Observable<Film[]> {
         return forkJoin(urls.map(url => this.getFilm(url)))
     }
-
-    prettyFilmsList(films: Film[]): string {
-        return films.reduce((accum, film) => accum + film.title + ',\n ', '')
-    }
 }

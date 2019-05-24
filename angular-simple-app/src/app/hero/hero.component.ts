@@ -5,7 +5,7 @@ import { HeroService } from './../core/services/heroes.service'
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Observable, Subject } from 'rxjs'
-import { takeUntil, map, switchMap } from 'rxjs/operators'
+import { takeUntil, switchMap } from 'rxjs/operators'
 
 @Component({
     selector: 'app-hero',
@@ -34,12 +34,5 @@ export class HeroComponent implements OnInit {
 
     ngOnDestroy(): void {
         this.destroy$.next()
-    }
-
-    prettyFilmsList(): string {
-        return this.films.reduce(
-            (accum, film) => accum + `<a href="/#">${film.title}</ahre>,<br/>`,
-            ''
-        )
     }
 }
