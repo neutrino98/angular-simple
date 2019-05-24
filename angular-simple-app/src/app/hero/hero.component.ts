@@ -4,6 +4,8 @@ import { Hero } from './../core/models/hero.model'
 import { HeroService } from './../core/services/heroes.service'
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
+import { Observable, Subject } from 'rxjs'
+import { takeUntil, map, switchMap } from 'rxjs/operators'
 
 @Component({
     selector: 'app-hero',
@@ -11,9 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router'
     styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements OnInit {
-    private hero: Hero
-    private films: Film[] = []
-    private sub: any
+    private hero$: Observable<Hero>
+    private films$: Observable<Film[]>
+    destroy$ = new Subject()
 
     constructor(
         private router: ActivatedRoute,
@@ -21,39 +23,22 @@ export class HeroComponent implements OnInit {
         private filmsService: FilmsService
     ) {}
 
-    // ngOnInit() {
-    //     this.sub = this.router.params.subscribe(params =>
-    //         this.heroService.getHeroById(params['id']).subscribe(hero => {
-    //             this.filmsService
-    //                 .getFilmsByUrls(hero.films)
-    //                 .subscribe(films => {
-    //                     this.films = films
-    //                     this.hero = hero
-    //                 })
-    //         })
-    //     )
-    // }
-
     ngOnInit(): void {
-        this.sub = this.router.params.subscribe(async params => {
-            const hero: Hero = await this.heroService
-                .getHeroById(params['id'])
-                .toPromise()
-            const films: Film[] = await this.filmsService
-                .getFilmsByUrls(hero.films)
-                .toPromise()
-            this.hero = hero
-            this.films = films
+        this.router.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
+            this.hero$ = this.heroService.getHeroById(params['id'])
+            this.films$ = this.hero$.pipe(
+                switchMap(hero => this.filmsService.getFilmsByUrls(hero.films))
+            )
         })
     }
 
     ngOnDestroy(): void {
-        this.sub.unsubscribe()
+        this.destroy$.next()
     }
 
     prettyFilmsList(): string {
         return this.films.reduce(
-            (accum, film) => accum + `<a [routerLink]="[ '/film' + film.id ]>${film.title}</a>,<br/>`,
+            (accum, film) => accum + `<a href="/#">${film.title}</ahre>,<br/>`,
             ''
         )
     }

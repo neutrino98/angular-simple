@@ -8,10 +8,11 @@ import { CoreModule } from './core/core.module'
 import { HttpClientModule } from '@angular/common/http';
 import { HeroComponent } from './hero/hero.component';
 import { FilmComponent } from './film/film.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, HeroesListComponent, HeroComponent, FilmComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, CoreModule],
+  imports: [BrowserModule, CommonModule, HttpClientModule, AppRoutingModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],
 })
