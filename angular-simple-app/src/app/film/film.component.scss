@@ -1,0 +1,17 @@
+@import 'abstracts/mixins';
+
+.film-table {
+    @include two_col_table;
+}
+
+.film-table-row {
+    padding: 1.3rem 0;
+}
+
+.film-table-row:nth-child(2n) {
+    background-color: rgb(173,216,230);
+}
+
+.film-table-row:nth-child(2n + 1) {
+    background-color: rgb(221,160,221);
+}

@@ -18,6 +18,7 @@ export class FilmsService {
             director: data.director,
             producer: data.producer,
             releaseDate: data.release_date,
+            id: data.url.split('/').reverse()[1]
         }
     }
 

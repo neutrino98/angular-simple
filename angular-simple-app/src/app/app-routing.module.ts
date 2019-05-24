@@ -1,3 +1,4 @@
+import { FilmComponent } from './film/film.component';
 import { HeroComponent } from './hero/hero.component';
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
@@ -10,8 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'hero/:id', 
-    component: HeroComponent, 
-    pathMatch: 'full'
+    component: HeroComponent 
+  }, 
+  {
+    path: 'film/:id', 
+    component: FilmComponent
   }
 ]
 

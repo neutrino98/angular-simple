@@ -3,4 +3,5 @@ export interface Film {
     director: string
     producer: string
     releaseDate: string
+    id: string
 }
